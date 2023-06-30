@@ -1245,6 +1245,8 @@ return (function () {
                                     triggerSpec.changed = true;
                                 } else if (token === "once") {
                                     triggerSpec.once = true;
+                                } else if (token === "visible") {
+                                    triggerSpec.visible = true;
                                 } else if (token === "consume") {
                                     triggerSpec.consume = true;
                                 } else if (token === "delay" && tokens[0] === ":") {
@@ -1779,6 +1781,8 @@ return (function () {
                     for (var i = 0; i < entries.length; i++) {
                         var entry = entries[i];
                         if (entry.isIntersecting) {
+                            if (triggerSpec.visible && window.getComputedStyle(elt).visibility === "hidden")
+                                break;
                             triggerEvent(elt, "intersect");
                             break;
                         }
