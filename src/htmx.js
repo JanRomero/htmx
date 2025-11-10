@@ -1247,6 +1247,8 @@ return (function () {
                                     triggerSpec.once = true;
                                 } else if (token === "consume") {
                                     triggerSpec.consume = true;
+                                } else if (token === "preventDefault") {
+                                    triggerSpec.preventDefault = true;
                                 } else if (token === "delay" && tokens[0] === ":") {
                                     tokens.shift();
                                     triggerSpec.delay = parseInterval(consumeUntil(tokens, WHITESPACE_OR_COMMA));
@@ -1424,6 +1426,9 @@ return (function () {
                         eventData.handledFor.push(elt);
                         if (triggerSpec.consume) {
                             evt.stopPropagation();
+                        }
+                        if (triggerSpec.preventDefault) {
+                            evt.preventDefault();
                         }
                         if (triggerSpec.target && evt.target) {
                             if (!matches(evt.target, triggerSpec.target)) {

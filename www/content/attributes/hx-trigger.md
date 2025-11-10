@@ -65,6 +65,7 @@ triggers from elements that might not be in the DOM at the point of initializati
 but with a target filter for a child element
 * `consume` - if this option is included the event will not trigger any other htmx requests on parents (or on elements
   listening on parents)
+* `preventDefault` - this option will cancel the browser’s default action for the event. For example, `keydown[ctrlKey && key == 's'] preventDefault` will suppress the save dialog.
 * `queue:<queue option>` - determines how events are queued if an event occurs while a request for another event is in flight.  Options are:
   * `first` - queue the first event
   * `last` - queue the last event (default)
